@@ -1,29 +1,47 @@
-.layout-container{
-    width: 100%;
-    height: 100%;
-    background-color: lightblue;
+.layout-container {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
 }
 
-.header{
-    height: 8rem;
-    width: 100%;
-    background-color: azure;
+.side-menu {
+  width: 12rem;
+  height: 100%;
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.body-container{
-    width: 100%;
-    height: calc(100% - 8rem);
-    display: flex;
-    flex-direction: row;
+.sidemenu-header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
-.side-menu{
-    width: 12rem;
-    height: 100%;
-    background-color: blueviolet;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.sidemenu-header > div:first-child {
+  padding: 1rem;
+}
+
+.body-container {
+  height: 100%;
+  width: calc(100% - 12rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 8rem;
+  width: 100%;
+  background-color: azure;
+}
+
+.router-outlet {
+  width: 100%;
+  height: calc(100% - 8rem);
+  background-color: #fff;
 }
 
 .nav-container {
@@ -39,12 +57,7 @@
   cursor: pointer;
 }
 
-.user-informatiom{
-    box-sizing: border-box;
-    padding: 10px;
-}
-
-.router-outlet{
-    width: calc(100% - 12rem);
-    background-color: #fff;
+.user-informatiom {
+  box-sizing: border-box;
+  padding: 10px;
 }

@@ -1,8 +1,10 @@
-<p>layout works!</p>
 <div class="layout-container">
-  <header class="header"></header>
-  <div class="body-container">
-    <aside class="side-menu">
+  <aside class="side-menu">
+    <div class="sidemenu-header">
+      <div class="user-informatiom">
+        <span>dedeodke</span>
+        <span>Track It</span>
+      </div>
       <div>
         <div
           class="nav-container"
@@ -10,11 +12,11 @@
           [class.is-active-menu]="isActive(menu.path)"
           (click)="handleNavigation(menu.path)"
         >
-          <!-- <mat-icon
+          <mat-icon
             class="nav-icon"
             [class.is-active-nav-icon]="isActive(menu.path)"
             >{{ menu.icon }}</mat-icon
-          > -->
+          >
           <a
             class="nav-name"
             [class.is-active-nav-name]="isActive(menu.path)"
@@ -22,11 +24,17 @@
           >
         </div>
       </div>
-      <div class="user-informatiom" >
-        <span>dedeodke</span>
-        <span>dedeodke</span>
-      </div>
-    </aside>
+    </div>
+
+    <div class="user-informatiom">
+      <span>dedeodke</span>
+      <span>dedeodke</span>
+    </div>
+  </aside>
+
+  <div class="body-container">
+    <header class="header"></header>
+
     <div class="router-outlet">
       <router-outlet></router-outlet>
     </div>

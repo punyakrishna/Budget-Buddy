@@ -4,33 +4,36 @@ import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { authGuard } from './auth/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { BudgetComponent } from './budget/budget.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  // {
-  //   path: '',
-  //   component: LayoutComponent,
-  //   canActivate: [authGuard],
-  //   children: [
-  //     {
-  //       path: 'dashboard',
-  //       component: DashboardComponent,
-  //     },
-  //     // {
-  //     //   path: 'expenses',
-  //     //   component: ExpensesComponent,
-  //     // },
-  //     // {
-  //     //   path: 'budget',
-  //     //   component: BudgetComponent,
-  //     // },
-  //     // {
-  //     //   path: 'settings',
-  //     //   component: SettingsComponent,
-  //     // },
-  //   ],
-  // },
+  {
+    path: '',
+    component: LayoutComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'expenses',
+        component: ExpensesComponent,
+      },
+      {
+        path: 'budget',
+        component: BudgetComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+      },
+    ],
+  },
   {
     path: '*',
     redirectTo: '/login',
