@@ -1,0 +1,50 @@
+.layout-container{
+    width: 100%;
+    height: 100%;
+    background-color: lightblue;
+}
+
+.header{
+    height: 8rem;
+    width: 100%;
+    background-color: azure;
+}
+
+.body-container{
+    width: 100%;
+    height: calc(100% - 8rem);
+    display: flex;
+    flex-direction: row;
+}
+
+.side-menu{
+    width: 12rem;
+    height: 100%;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 7px;
+  color: var(--primary-white-color);
+  box-sizing: border-box;
+  padding: 6px 18px;
+  cursor: pointer;
+}
+
+.user-informatiom{
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.router-outlet{
+    width: calc(100% - 12rem);
+    background-color: #fff;
+}

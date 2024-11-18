@@ -1,0 +1,61 @@
+<div class="login-container">
+  <form class="login-card" [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+    <p class="budget-buddy">Budget-Buddy</p>
+    <div class="input-and-error">
+      <input
+        class="input-field"
+        formControlName="username"
+        name="username"
+        type="text"
+        placeholder="Enter User name"
+        required
+        [class.is-invalid]="
+          loginForm.get('username').touched && loginForm.get('username').invalid
+        "
+      />
+      <div
+        *ngIf="
+          loginForm.get('username').touched && loginForm.get('username').invalid
+        "
+      >
+        <span
+          class="error-message"
+          *ngIf="loginForm.get('username').errors?.required"
+          >Enter your user name</span
+        >
+      </div>
+    </div>
+    <div class="input-and-error">
+      <input
+        class="input-field"
+        formControlName="password"
+        name="password"
+        type="password"
+        placeholder="Enter Password"
+        required=""
+        [class.is-invalid]="
+          loginForm.get('password').touched && loginForm.get('password').invalid
+        "
+      />
+      <div
+        *ngIf="
+          loginForm.get('password').touched && loginForm.get('password').invalid
+        "
+      >
+        <span
+          class="error-message"
+          *ngIf="loginForm.get('password').errors?.required"
+          >Enter your password</span
+        >
+      </div>
+    </div>
+    <button
+      [disabled]="!loginForm.valid"
+      [class.is-disable]="!loginForm.valid"
+      class="login-button"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>

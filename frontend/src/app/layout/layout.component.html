@@ -1,0 +1,34 @@
+<p>layout works!</p>
+<div class="layout-container">
+  <header class="header"></header>
+  <div class="body-container">
+    <aside class="side-menu">
+      <div>
+        <div
+          class="nav-container"
+          *ngFor="let menu of navigationList"
+          [class.is-active-menu]="isActive(menu.path)"
+          (click)="handleNavigation(menu.path)"
+        >
+          <!-- <mat-icon
+            class="nav-icon"
+            [class.is-active-nav-icon]="isActive(menu.path)"
+            >{{ menu.icon }}</mat-icon
+          > -->
+          <a
+            class="nav-name"
+            [class.is-active-nav-name]="isActive(menu.path)"
+            >{{ menu.navName }}</a
+          >
+        </div>
+      </div>
+      <div class="user-informatiom" >
+        <span>dedeodke</span>
+        <span>dedeodke</span>
+      </div>
+    </aside>
+    <div class="router-outlet">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

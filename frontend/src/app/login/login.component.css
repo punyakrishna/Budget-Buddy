@@ -1,0 +1,86 @@
+.login-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-white-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 400px;
+  height: 450px;
+  background-color: var(--primary-light-blue-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 45px;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.budget-buddy {
+  font-family: cursive;
+  font-size: 20px;
+  font-weight: 550;
+}
+
+.input-container {
+  width: 100%;
+}
+
+.form-gp {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 15px;
+  row-gap: 20px;
+}
+
+.form-gp label {
+  display: flex;
+  align-items: flex-start;
+  width: 100px;
+}
+
+.input-and-error {
+  width: calc(100% - 70px);
+}
+
+.input-field {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  padding: 0px 5px;
+}
+
+.is-invalid {
+  border: 1.5px solid var(--primary-error-color) !important;
+}
+
+.error-message {
+  color: var(--primary-error-color);
+}
+
+.login-button {
+  width: 100px;
+  padding: 10px 15px;
+  background-color: var(--primary-blue-color);
+  border: 1.5px solid #cab2c7;
+  border-radius: 8px;
+  color: var(--primary-white-color);
+  cursor: pointer;
+}
+
+.is-disable {
+  background-color: #dbdfe1;
+  cursor: default;
+  color: var(--primary-black-color);
+  border: none;
+}
