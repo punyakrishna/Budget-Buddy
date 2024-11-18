@@ -1,19 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --primary-white-color: #FFFFFF;
+  --primary-white-color: #ffffff;
 
-    --primary-black-color: #5B93FF;
-    --secondary-black-color: #030229;
+  --primary-black-color: #000000;
+  --secondary-black-color: #030229;
 
-    --primary-blue-color: #5B93FF;
+  --primary-yellow-color: #ffc227;
+
+  --primary-red-color: #ff836a;
+
+  /* light blue: #26C0E2; yello-2: #FFD66B; green: #97BD70;purple: #8191D9; purple-2: #D15A9B;
+ */
+
+  --primary-blue-color: #5b93ff;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
