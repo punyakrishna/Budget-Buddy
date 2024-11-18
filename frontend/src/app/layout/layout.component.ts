@@ -9,28 +9,28 @@ import { Router } from '@angular/router';
 export class LayoutComponent {
   public dialogRef: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   navigationList = [
     {
       navName: 'Dashboard',
       path: 'dashboard',
-      icon: 'dashboard',
+      icon: 'assets/image/ic_dashboard.svg',
     },
     {
       navName: 'Expenses',
       path: 'expenses',
-      icon: 'expense',
+      icon: 'assets/image/ic_expense.svg',
     },
     {
       navName: 'Budget',
       path: 'budget',
-      icon: 'budget',
+      icon: 'assets/image/ic_budget.svg',
     },
     {
       navName: 'Settings',
       path: 'settings',
-      icon: 'settings',
+      icon: 'assets/image/ic_setting.svg',
     },
   ];
 

@@ -1,34 +1,35 @@
 <div class="layout-container">
   <aside class="side-menu">
     <div class="sidemenu-header">
-      <div class="user-informatiom">
-        <img src="assets/images/logo.svg" />
+      <div>
+        <img src="assets/image/logo.svg" />
         <span>Track It</span>
       </div>
-      <div>
-        <div
-          class="nav-container"
-          *ngFor="let menu of navigationList"
-          [class.is-active-menu]="isActive(menu.path)"
-          (click)="handleNavigation(menu.path)"
-        >
-          <mat-icon
-            class="nav-icon"
-            [class.is-active-nav-icon]="isActive(menu.path)"
-            >{{ menu.icon }}</mat-icon
-          >
-          <a
-            class="nav-name"
-            [class.is-active-nav-name]="isActive(menu.path)"
-            >{{ menu.navName }}</a
-          >
-        </div>
+
+      <!-- <div> -->
+      <div
+        class="nav-container"
+        *ngFor="let menu of navigationList"
+        [class.is-active-menu]="isActive(menu.path)"
+        (click)="handleNavigation(menu.path)"
+      >
+        <!-- <div > -->
+        <img src="{{ menu.icon }}" />
+        <a class="nav-name" [class.is-active-nav-name]="isActive(menu.path)">{{
+          menu.navName
+        }}</a>
+        <!-- </div> -->
       </div>
+      <!-- </div> -->
     </div>
 
     <div class="user-informatiom">
-      <span>dedeodke</span>
-      <span>dedeodke</span>
+      <img src="assets/image/ic_dashboard.svg" />
+      <div>
+        <p>Punya B K</p>
+        <p>Free Account</p>
+      </div>
+      <img src="assets/image/ic_logout.svg" />
     </div>
   </aside>
 
