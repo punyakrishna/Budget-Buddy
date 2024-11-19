@@ -3,6 +3,7 @@ const { userAuth } = require("../utils/auth");
 const { validateBudgetData } = require("../utils/validations");
 const Category = require("../models/category");
 const Budget = require("../models/budget");
+const Expense = require("../models/expense");
 
 const budgetRoutes = express.Router();
 
@@ -139,12 +140,37 @@ budgetRoutes.delete("/budget/:id", userAuth, async (req, res) => {
 
 budgetRoutes.get("/budgets", userAuth, async (req, res) => {
   try {
+    // const budgets = await Budget.find().populate("categoryId", "name");
+
+    const expenses = await Expense.aggregate([
+      {
+        $group: {
+          _id: "$categoryId", // Group by categoryId
+          totalExpense: { $sum: "$amount" }, // Sum up the amounts
+        },
+      },
+    ]);
+
+    // Step 2: Convert the aggregation result to a key-value map for quick lookup
+    const expenseMap = expenses.reduce((acc, curr) => {
+      acc[curr._id.toString()] = curr.totalExpense;
+      return acc;
+    }, {});
+
+    // Step 3: Fetch budgets and enhance with total expense
     const budgets = await Budget.find().populate("categoryId", "name");
+    const enhancedBudgets = budgets.map((budget) => {
+      const categoryId = budget.categoryId._id.toString();
+      return {
+        ...budget.toObject(),
+        totalExpense: expenseMap[categoryId] || 0, // Add totalExpense (default to 0 if no expenses)
+      };
+    });
 
     res.status(200).json({
       code: 200,
       message: "Budgets fetched successfully.",
-      data: budgets,
+      data: enhancedBudgets,
     });
   } catch (err) {
     console.error("Error fetching budgets:", err);

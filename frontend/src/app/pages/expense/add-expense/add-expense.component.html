@@ -1,0 +1,127 @@
+<div class="dialog-body-container">
+  <h1 mat-dialog-title>Add Expense</h1>
+  <div mat-dialog-content>
+    <form
+      [formGroup]="expenseForm"
+      class="form-container"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-gp">
+        <label>Category* :</label>
+        <div class="input-and-error">
+          <select
+            placeholder="Select category"
+            formControlName="categoryId"
+            class="select-field"
+            required
+          >
+            <option>Select category</option>
+            <option *ngFor="let option of categories" [value]="option._id">
+              {{ option.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              expenseForm.get('categoryId').touched &&
+              expenseForm.get('categoryId').invalid
+            "
+          >
+            <span
+              class="error-message"
+              *ngIf="expenseForm.get('categoryId').errors?.required"
+              >Please select the category</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-gp">
+        <label>Title* :</label>
+        <div class="input-and-error">
+          <input
+            class="input-field"
+            label="expense"
+            formControlName="title"
+            type="text"
+            placeholder="Enter Expense"
+          />
+          <div
+            *ngIf="
+              expenseForm.get('title').touched &&
+              expenseForm.get('title').invalid
+            "
+          >
+            <span
+              class="error-message"
+              *ngIf="expenseForm.get('title').errors?.required"
+              >Expense is required</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-gp">
+        <label>Description* :</label>
+        <div class="input-and-error">
+          <input
+            class="input-field"
+            label="expense"
+            formControlName="description"
+            type="text"
+            inputmode="”numeric”"
+            placeholder="Enter Expense"
+          />
+          <div
+            *ngIf="
+              expenseForm.get('description').touched &&
+              expenseForm.get('description').invalid
+            "
+          >
+            <span
+              class="error-message"
+              *ngIf="expenseForm.get('description').errors?.required"
+              >Expense is required</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-gp">
+        <label>Expense* :</label>
+        <div class="input-and-error">
+          <input
+            class="input-field"
+            label="expense"
+            formControlName="amount"
+            type="text"
+            inputmode="”numeric”"
+            placeholder="Enter Expense"
+          />
+          <div
+            *ngIf="
+              expenseForm.get('amount').touched &&
+              expenseForm.get('amount').invalid
+            "
+          >
+            <span
+              class="error-message"
+              *ngIf="expenseForm.get('amount').errors?.required"
+              >Expense is required</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-action-button">
+        <button
+          class="add-expense-button"
+          [disabled]="!expenseForm.valid"
+          [class.is-disabled]="!expenseForm.valid"
+          type="submit"
+        >
+          {{ getButtonText() }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -30,9 +30,11 @@ const signUpDataValidation = (req, res, next) => {
 const validateBudgetData = (req, res, next) => {
   const { error } = validateBudgetSchema.validate(req.body);
   if (error) {
+    const message = error.details[0].message;
+
     return res.status(400).json({
       code: 400,
-      error: error.details.map((detail) => detail.message),
+      error: message,
     });
   }
   next();

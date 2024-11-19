@@ -1,43 +1,45 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { BudgetsService } from '../../../services/budget/budgets.service';
+import { ExpenseService } from '../../../services/expense/expense.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-budget',
-  templateUrl: './add-budget.component.html',
-  styleUrl: './add-budget.component.css',
+  selector: 'app-add-expense',
+  templateUrl: './add-expense.component.html',
+  styleUrl: './add-expense.component.css'
 })
-export class AddBudgetComponent {
-  public budgetForm: any;
+export class AddExpenseComponent {
+  public expenseForm: any;
   categories: any = [];
 
   constructor(
     private fb: FormBuilder,
-    private budgetService: BudgetsService,
-    private dailogRef: MatDialogRef<AddBudgetComponent>,
+    private expenseService: ExpenseService,
+    private dailogRef: MatDialogRef<AddExpenseComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data, "init")
     this.getAllCategories()
     if (this.data) {
-      this.budgetForm = this.fb.group({
+      this.expenseForm = this.fb.group({
         categoryId: [this.data.categoryId._id || '', [Validators.required]],
         amount: [this.data.amount || '', [Validators.required]],
+        title: [this.data.title || '', [Validators.required]],
+        description: [this.data.description || '', [Validators.required]],
       });
     } else {
-      // For 'Add' case, initialize form with empty fields
-      this.budgetForm = this.fb.group({
+      this.expenseForm = this.fb.group({
         categoryId: ['', [Validators.required]],
         amount: ['', [Validators.required]],
+        title: ['', [Validators.required]],
+        description: ['', [Validators.required]],
       });
     }
   }
 
   getAllCategories() {
-    this.budgetService.getCategories().subscribe({
+    this.expenseService.getCategories().subscribe({
       next: (response: any) => {
         console.log('Response:', response.data);
         this.categories = response.data;
@@ -49,21 +51,22 @@ export class AddBudgetComponent {
   }
 
   getButtonText() {
-    console.log("this.data", this.data);
     if (this.data && this.data._id) {
-      return "Update Budget";
+      return "Update Expense";
     }
-    return "Add Budget";
+    return "Add Expense";
   }
 
   onSubmit() {
     const data = {
-      categoryId: this.budgetForm.get('categoryId')?.value,
-      amount: this.budgetForm.get('amount')?.value,
+      categoryId: this.expenseForm.get('categoryId')?.value,
+      amount: this.expenseForm.get('amount')?.value,
+      title: this.expenseForm.get('title')?.value,
+      description: this.expenseForm.get('description')?.value,
     };
 
     if (this.data) {
-      this.budgetService.updateBudget(data, this.data._id).subscribe({
+      this.expenseService.updateExpense(data, this.data._id).subscribe({
         next: (response: any) => {
           console.log('Response:', response);
         },
@@ -76,7 +79,7 @@ export class AddBudgetComponent {
         },
       });
     } else {
-      this.budgetService.addBudget(data).subscribe({
+      this.expenseService.addExpense(data).subscribe({
         next: (response: any) => {
           console.log('Response:', response);
         },

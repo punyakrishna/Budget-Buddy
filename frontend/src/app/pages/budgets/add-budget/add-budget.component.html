@@ -15,19 +15,20 @@
             class="select-field"
             required
           >
+            <option>Select category</option>
             <option *ngFor="let option of categories" [value]="option._id">
               {{ option.name }}
             </option>
           </select>
           <div
             *ngIf="
-              budgetForm.get('category').touched &&
-              budgetForm.get('category').invalid
+              budgetForm.get('categoryId').touched &&
+              budgetForm.get('categoryId').invalid
             "
           >
             <span
               class="error-message"
-              *ngIf="budgetForm.get('category').errors?.required"
+              *ngIf="budgetForm.get('categoryId').errors?.required"
               >Please select the category</span
             >
           </div>
@@ -67,7 +68,7 @@
           [class.is-disabled]="!budgetForm.valid"
           type="submit"
         >
-          Add Budget
+          {{ this.getButtonText() }}
         </button>
       </div>
     </form>

@@ -1,12 +1,14 @@
 .main-container {
   height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 300px));
+  grid-template-columns: repeat(4, minmax(0, 300px));
   gap: 3rem;
-  height: calc(100% - 5rem);
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -51,16 +53,16 @@ button {
 }
 
 .white {
-  background-color: var(--white-color);
+  background-color: var(--primary-white-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card-container > p {
+.card-container>p {
   font-size: 1rem;
   font-weight: bold;
 }
 
-.card-container > span {
+.card-container>span {
   font-size: 0.8rem;
   font-weight: 100;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AddExpenseComponent } from './addExpense/add-expense/add-expense.component';
+import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpenseService } from '../../services/expense/expense.service';
 
@@ -34,9 +34,13 @@ export class ExpenseComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private expenseService: ExpenseService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.getAllExpenses()
+  }
+
+  getAllExpenses() {
     this.expenseService.getExpenses().subscribe({
       next: (response: any) => {
         console.log('Response:', response);
@@ -50,16 +54,34 @@ export class ExpenseComponent implements OnInit {
 
   addExpense() {
     this.dialogRef = this.matDialog.open(AddExpenseComponent, {
-      width: '350px',
+      width: '450px',
     });
     this.dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result === true) {
-        // this.fetchData();
+        this.getAllExpenses()
       }
     });
   }
 
-  updateIncome(data: any) {}
+  updateExpense(data: any) {
+    this.dialogRef = this.matDialog.open(AddExpenseComponent, {
+      width: '450px',
+      data: data,
+    });
+  }
 
-  deleteIncome(data: any) {}
+  deleteExpense(expenseId: string) {
+    if (confirm('Are you sure you want to delete this expense?')) {
+      this.expenseService.deleteExpense(expenseId).subscribe({
+        next: (response) => {
+          alert('Expense deleted successfully!');
+          this.getAllExpenses();
+        },
+        error: (err) => {
+          console.log(err, "errrrrrrrrrr")
+          alert('Failed to delete expense. Please try again.');
+        },
+      });
+    }
+  }
 }

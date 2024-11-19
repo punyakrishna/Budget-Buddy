@@ -15,9 +15,13 @@ export class BudgetComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private budgetService: BudgetsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.getAllBudgets()
+  }
+
+  getAllBudgets() {
     this.budgetService.getBudgets().subscribe({
       next: (response: any) => {
         console.log('Response:', response);
@@ -32,10 +36,12 @@ export class BudgetComponent implements OnInit {
   addBudget() {
     this.dialogRef = this.matDialog.open(AddBudgetComponent, {
       width: '350px',
+      data: null,
+
     });
     this.dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result === true) {
-        // this.fetchData();
+        this.getAllBudgets()
       }
     });
   }
@@ -45,31 +51,29 @@ export class BudgetComponent implements OnInit {
   }
 
   updateBudget(data: any) {
-    // this.bts.updateBudget(data.item, data.index);
-    // this.fetchData();
-
     this.dialogRef = this.matDialog.open(AddBudgetComponent, {
-      width: '450px',
+      width: '350px',
       data: data,
     });
-    // this.dialogRef.afterClosed().subscribe((result:boolean)=>{
-    //   if(result===true){
-    //     this.fetchData(0, this.pageSize);
-    //   }
-    // })
   }
 
-  deleteBudget({ item, index }: { item: any; index: number }) {
-    console.log('coming to delete', item);
-
-    // if (confirm('Are you sure you want to delete this income?')) {
-    //   this.bts.deleteBudget(item, index);
-    //   this.fetchData();
-    // }
+  deleteBudget(budgetId: string) {
+    if (confirm('Are you sure you want to delete this budget?')) {
+      this.budgetService.deleteBudget(budgetId).subscribe({
+        next: (response) => {
+          alert('Budget deleted successfully!');
+          this.getAllBudgets(); // Refresh the budget list
+        },
+        error: (err) => {
+          console.log(err, "errrrrrrrrrr")
+          alert('Failed to delete budget. Please try again.');
+        },
+      });
+    }
   }
 
   getSpentPercentage(budget: any): any {
-    return (budget.spent / budget.budgetSet) * 100;
+    return (budget.totalExpense / budget.amount) * 100;
   }
 
   getBudgetCardClassName(budget: any): string {
@@ -86,11 +90,11 @@ export class BudgetComponent implements OnInit {
   getBudgetCardDescription(budget: any): string {
     const percentage = this.getSpentPercentage(budget);
     if (percentage <= 60) {
-      return `Your expenditure on ${budget.budgetType} is on track`;
+      return `Your expenditure on ${budget.categoryId.name} is on track`;
     } else if (percentage > 60 && percentage < 100) {
       return 'You might be spending too much';
     } else {
-      return `You have not spent on ${budget.budgetType} yet`;
+      return `You have not spent on ${budget.categoryId.name} yet`;
     }
   }
 }

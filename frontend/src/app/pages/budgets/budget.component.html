@@ -11,16 +11,10 @@
       [ngClass]="getBudgetCardClassName(budget)"
     >
       <div class="icons-container">
-        <p>{{ budget.budgetType }}</p>
+        <p>{{ budget.categoryId.name }}</p>
         <div>
-          <mat-icon
-            class="icon"
-            (click)="updateBudget({ item: budget, index: i })"
-            >edit</mat-icon
-          >
-          <mat-icon
-            class="icon"
-            (click)="deleteBudget({ item: budget, index: i })"
+          <mat-icon class="icon" (click)="updateBudget(budget)">edit</mat-icon>
+          <mat-icon class="icon" (click)="deleteBudget(budget._id)"
             >delete</mat-icon
           >
         </div>
@@ -28,17 +22,17 @@
       <div class="budget-container">
         <div>
           <p>Spent</p>
-          <span>{{ budget.spent }}</span>
+          <span>{{ budget.totalExpense }}</span>
         </div>
 
         <div>
           <p>Left to psend</p>
-          <span>{{ budget.budgetSet - budget.spent }}</span>
+          <span>{{ budget.amount - budget.totalExpense }}</span>
         </div>
 
         <div>
           <p>Limit</p>
-          <span>{{ budget.budgetSet }}</span>
+          <span>{{ budget.amount }}</span>
         </div>
       </div>
 
