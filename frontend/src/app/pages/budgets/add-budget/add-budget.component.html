@@ -1,0 +1,75 @@
+<div class="dialog-body-container">
+  <h1 mat-dialog-title>Add Budget</h1>
+  <div mat-dialog-content>
+    <form
+      [formGroup]="budgetForm"
+      class="form-container"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="form-gp">
+        <label>Category* :</label>
+        <div class="input-and-error">
+          <select
+            placeholder="Select category"
+            formControlName="categoryId"
+            class="select-field"
+            required
+          >
+            <option *ngFor="let option of categories" [value]="option._id">
+              {{ option.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              budgetForm.get('category').touched &&
+              budgetForm.get('category').invalid
+            "
+          >
+            <span
+              class="error-message"
+              *ngIf="budgetForm.get('category').errors?.required"
+              >Please select the category</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="form-gp">
+        <label>Expense* :</label>
+        <div class="input-and-error">
+          <input
+            class="input-field"
+            label="expense"
+            formControlName="amount"
+            type="text"
+            inputmode="”numeric”"
+            placeholder="Enter Expense"
+          />
+          <div
+            *ngIf="
+              budgetForm.get('amount').touched &&
+              budgetForm.get('amount').invalid
+            "
+          >
+            <span
+              class="error-message"
+              *ngIf="budgetForm.get('amount').errors?.required"
+              >Expense is required</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-action-button">
+        <button
+          class="add-expense-button"
+          [disabled]="!budgetForm.valid"
+          [class.is-disabled]="!budgetForm.valid"
+          type="submit"
+        >
+          Add Budget
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

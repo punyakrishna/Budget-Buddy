@@ -12,12 +12,26 @@ import { ExpenseComponent } from './pages/expense/expense.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BudgetComponent } from './pages/budgets/budget.component';
 import { SettingsComponent } from './pages/setting/settings.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Import this
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/interceptors/auth.service';
 import { SignupComponent } from './pages/signup/signup.component';
+import { AddBudgetComponent } from './pages/budgets/add-budget/add-budget.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddExpenseComponent } from './pages/expense/addExpense/add-expense/add-expense.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, DashboardComponent, ExpenseComponent, LoginComponent, BudgetComponent, SettingsComponent, SignupComponent],
+  declarations: [
+    AppComponent,
+    LayoutComponent,
+    DashboardComponent,
+    ExpenseComponent,
+    LoginComponent,
+    BudgetComponent,
+    SettingsComponent,
+    SignupComponent,
+    AddBudgetComponent,
+    AddExpenseComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,13 +39,16 @@ import { SignupComponent } from './pages/signup/signup.component';
     FormsModule,
     MatIconModule,
     HttpClientModule,
-
+    MatDialogModule,
   ],
-  providers: [provideAnimationsAsync(), {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true // Allow multiple interceptors
-  }],
+  providers: [
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true, // Allow multiple interceptors
+    },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

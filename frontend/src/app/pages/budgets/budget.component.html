@@ -1,1 +1,48 @@
-<p>budget works!</p>
+<div class="main-container">
+  <div class="expense-header">
+    <p>Budget Management</p>
+    <button (click)="addBudget()">Add New</button>
+  </div>
+
+  <div class="container">
+    <div
+      class="card-container"
+      *ngFor="let budget of data; index as i"
+      [ngClass]="getBudgetCardClassName(budget)"
+    >
+      <div class="icons-container">
+        <p>{{ budget.budgetType }}</p>
+        <div>
+          <mat-icon
+            class="icon"
+            (click)="updateBudget({ item: budget, index: i })"
+            >edit</mat-icon
+          >
+          <mat-icon
+            class="icon"
+            (click)="deleteBudget({ item: budget, index: i })"
+            >delete</mat-icon
+          >
+        </div>
+      </div>
+      <div class="budget-container">
+        <div>
+          <p>Spent</p>
+          <span>{{ budget.spent }}</span>
+        </div>
+
+        <div>
+          <p>Left to psend</p>
+          <span>{{ budget.budgetSet - budget.spent }}</span>
+        </div>
+
+        <div>
+          <p>Limit</p>
+          <span>{{ budget.budgetSet }}</span>
+        </div>
+      </div>
+
+      <span>{{ getBudgetCardDescription(budget) }}</span>
+    </div>
+  </div>
+</div>

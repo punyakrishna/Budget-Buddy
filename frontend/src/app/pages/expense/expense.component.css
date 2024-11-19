@@ -1,0 +1,55 @@
+.expense-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 1rem;
+
+}
+
+.expense-header p {
+  color: var(--secondary-black-color);
+  font-weight: 500;
+}
+
+button {
+  background-color: var(--primary-blue-color);
+  padding: 0.6rem 1.2rem;
+  color: var(--primary-white-color);
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+tbody {
+  text-align: center;
+}
+th {
+  background-color: #f5f5f5;
+  font-weight: 400;
+  padding: 14px;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.8rem;
+}
+td {
+  padding: 14px;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.custom-icon {
+  text-align: center;
+}
+
+.custom-icon mat-icon {
+  font-size: 1rem;
+  cursor: pointer;
+}

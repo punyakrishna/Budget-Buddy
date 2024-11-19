@@ -1,6 +1,7 @@
 const express = require("express");
 const categoryRoutes = express.Router();
 const Category = require("../models/category");
+const { userAuth } = require("../utils/auth");
 
 categoryRoutes.post("/category", async (req, res) => {
   try {
@@ -103,6 +104,25 @@ categoryRoutes.delete("/category/:id", async (req, res) => {
     res.status(500).json({
       code: 500,
       error: "An error occurred while deleting the category.",
+    });
+  }
+});
+
+categoryRoutes.get("/categories", userAuth, async (req, res) => {
+  console.log("yes its coming here");
+  try {
+    const categories = await Category.find();
+
+    res.status(200).json({
+      code: 200,
+      message: "Categories fetched successfully.",
+      data: categories,
+    });
+  } catch (err) {
+    console.error("Error fetching categories:", err);
+    res.status(500).json({
+      code: 500,
+      error: "An error occurred while fetching the categories.",
     });
   }
 });

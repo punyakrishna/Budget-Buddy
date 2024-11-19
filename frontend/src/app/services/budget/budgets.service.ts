@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ExpenseService {
+export class BudgetsService {
   private baseUrl = 'http://localhost:3434';
 
   constructor(private http: HttpClient) {}
 
-  getExpenses(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/expenses`);
+  getBudgets(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/budgets`);
     // .pipe(
     //   catchError((error) => {
     //     console.error('API Error:', error);

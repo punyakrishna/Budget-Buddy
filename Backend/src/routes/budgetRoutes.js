@@ -139,9 +139,7 @@ budgetRoutes.delete("/budget/:id", userAuth, async (req, res) => {
 
 budgetRoutes.get("/budgets", userAuth, async (req, res) => {
   try {
-    const budgets = await Budget.find()
-      .populate("userId", "firstName lastName gender")
-      .populate("categoryId", "name");
+    const budgets = await Budget.find().populate("categoryId", "name");
 
     res.status(200).json({
       code: 200,

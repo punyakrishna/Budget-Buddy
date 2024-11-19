@@ -1,1 +1,27 @@
-<p>expense works!</p>
+<div class="expense-header">
+  <p>Expense tracking</p>
+  <button (click)="addExpense()">Add New</button>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns">{{ column.label }}</th>
+      <th style="text-align: center">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of expennseData; index as i">
+      <!-- <td *ngFor="let column of columns">{{ item[column.name] }}</td> -->
+      <td>{{ item.categoryId.name }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.amount }}</td>
+
+      <td class="custom-icon">
+        <mat-icon (click)="updateIncome(item)">edit</mat-icon>
+        <mat-icon (click)="deleteIncome(item)">delete</mat-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>
