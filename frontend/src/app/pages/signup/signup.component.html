@@ -1,0 +1,147 @@
+<div class="signup-container">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="sub-container">
+    <div class="input-and-error">
+      <input
+        class="input-field"
+        formControlName="firstName"
+        name="firstName"
+        type="text"
+        placeholder="Enter first name"
+        required
+        [class.is-invalid]="
+          signupForm.get('firstName')?.touched &&
+          signupForm.get('firstName')?.invalid
+        "
+      />
+      <div
+        class="error-message-container"
+        *ngIf="
+          signupForm.get('firstName')?.touched &&
+          signupForm.get('firstName')?.invalid
+        "
+      >
+        <span
+          class="error-message"
+          *ngIf="signupForm.get('firstName')?.errors?.['required']"
+        >
+          First name is required.
+        </span>
+        <span
+          class="error-message"
+          *ngIf="signupForm.get('firstName')?.errors?.['minlength']"
+        >
+          First name cannot be empty.
+        </span>
+      </div>
+    </div>
+
+    <div class="input-and-error">
+      <input
+        class="input-field"
+        formControlName="lastName"
+        name="lastName"
+        type="text"
+        placeholder="Enter last name"
+        required
+      />
+    </div>
+
+    <div class="input-and-error">
+      <!-- <label for="email">Email:</label> -->
+      <input
+        class="input-field"
+        formControlName="email"
+        name="email"
+        type="text"
+        placeholder="Enter email id"
+        required
+        [class.is-invalid]="
+          signupForm.get('email')?.touched && signupForm.get('email')?.invalid
+        "
+      />
+      <div
+        class="error-message-container"
+        *ngIf="
+          signupForm.get('email')?.touched && signupForm.get('email')?.invalid
+        "
+      >
+        <span
+          class="error-message"
+          *ngIf="signupForm.get('email')?.errors?.['required']"
+        >
+          Email is required.
+        </span>
+        <span
+          class="error-message"
+          *ngIf="signupForm.get('email')?.errors?.['email']"
+        >
+          Please enter a valid email address.
+        </span>
+      </div>
+    </div>
+
+    <!-- <div class="input-and-error">
+      <select id="gender" formControlName="gender">
+        <option value="">Select Gender</option>
+        <option *ngFor="let gender of genders" [value]="gender">
+          {{ gender }}
+        </option>
+      </select>
+      <div *ngIf="signupForm.get('gender')?.errors?.['pattern']">
+        Gender must be Female, Male, or Others.
+      </div>
+    </div> -->
+
+    <div class="input-and-error">
+      <input
+        class="input-field"
+        formControlName="password"
+        name="password"
+        type="text"
+        placeholder="Enter password"
+        required
+        [class.is-invalid]="
+          signupForm.get('password')?.touched &&
+          signupForm.get('password')?.invalid
+        "
+      />
+
+      <div
+        class="error-message-container"
+        *ngIf="
+          signupForm.get('password')?.touched &&
+          signupForm.get('password')?.invalid
+        "
+      >
+        <span
+          class="error-message"
+          *ngIf="signupForm.get('password')?.errors?.['required']"
+        >
+          Password is required.
+        </span>
+        <!-- <span
+          class="error-message"
+          *ngIf="signupForm.get('password')?.errors?.['minlength']"
+        >
+          Password must be at least 8 characters long.
+        </span> -->
+        <span
+          class="error-message"
+          *ngIf="signupForm.get('password')?.errors?.['pattern']"
+        >
+          Password must contain at least one uppercase letter, one number, and
+          one special character.
+        </span>
+      </div>
+    </div>
+
+    <button
+      class="login-button"
+      [class.is-disable]="signupForm.invalid"
+      type="submit"
+      [disabled]="signupForm.invalid"
+    >
+      Signup
+    </button>
+  </form>
+</div>

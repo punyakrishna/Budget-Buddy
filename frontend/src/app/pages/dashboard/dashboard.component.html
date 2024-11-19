@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="dashboard-header">
+    <p>Dashboard</p>
+    <div>
+      <img src="assets/image/ic_notification.svg" />
+    </div>
+  </div>
+  <div class="insights-container">
+    <div>
+      <img src="assets/image/ic_total_budget.svg" />
+      <div class="budget-details">
+        <p>{{ this.dashboardData.totalBudget }}</p>
+        <span>Total Budget</span>
+      </div>
+    </div>
+
+    <div>
+      <img src="assets/image/ic_total_expense.svg" />
+      <div class="budget-details">
+        <p>{{ this.dashboardData.totalExpense }}</p>
+        <span>Total Expense</span>
+      </div>
+    </div>
+
+    <div>
+      <img src="assets/image/ic_total_amount_left.svg" />
+      <div class="budget-details">
+        <p>{{ this.dashboardData.remainingAmount }}</p>
+        <span>Total Left</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="expenses-container">
+    <p>Recent Expenses</p>
+    <div>
+      <div
+        *ngFor="let expense of this.dashboardData.recentExpenses"
+        class="expense-container"
+      >
+        <h5>{{ expense.title }}</h5>
+        <span>24 Oct 2024, Thursday</span>
+        <p>{{ expense.description }}</p>
+        <div class="spent-amount">
+          <span>Amount</span>
+          <p>{{ expense.amount }}</p>
+        </div>
+        <div class="cat-details">
+          <div>{{ expense.categoryId.name }}</div>
+          <img src="assets/image/ic_menu.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

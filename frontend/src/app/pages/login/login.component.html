@@ -1,0 +1,76 @@
+<div class="login-container">
+  <form class="login-card" [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+    <p class="budget-buddy">Budget-Buddy</p>
+    <div class="input-and-error">
+      <input
+        class="input-field"
+        formControlName="email"
+        name="email"
+        type="text"
+        placeholder="Enter email"
+        required
+        [class.is-invalid]="
+          loginForm.get('email').touched && loginForm.get('email').invalid
+        "
+      />
+      <div
+        class="error-message-container"
+        *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid"
+      >
+        <span
+          class="error-message"
+          *ngIf="loginForm.get('email').errors?.required"
+          >Enter your email</span
+        >
+        <span
+          class="error-message"
+          *ngIf="loginForm.get('email')?.errors?.['email']"
+          >Please enter a valid email address</span
+        >
+      </div>
+    </div>
+    <div class="input-and-error">
+      <input
+        class="input-field"
+        formControlName="password"
+        name="password"
+        type="password"
+        placeholder="Enter Password"
+        required=""
+        [class.is-invalid]="
+          loginForm.get('password').touched && loginForm.get('password').invalid
+        "
+      />
+      <div
+        class="error-message-container"
+        *ngIf="
+          loginForm.get('password').touched && loginForm.get('password').invalid
+        "
+      >
+        <span
+          class="error-message"
+          *ngIf="loginForm.get('password')?.errors?.['required']"
+          >Password is required.</span
+        >
+        <!-- <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+          Password must be at least 8 characters.
+        </span> -->
+        <span
+          class="error-message"
+          *ngIf="loginForm.get('password')?.errors?.['pattern']"
+        >
+          Password must include one uppercase letter, one number, and one
+          special character.
+        </span>
+      </div>
+    </div>
+    <button
+      [disabled]="!loginForm.valid"
+      [class.is-disable]="!loginForm.valid"
+      class="login-button"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>

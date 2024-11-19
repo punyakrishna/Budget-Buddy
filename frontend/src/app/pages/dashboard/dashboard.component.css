@@ -1,0 +1,144 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.dashboard-header>p {
+    color: var(--secondary-black-color);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.dashboard-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.insights-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    /* justify-content: space-between; */
+}
+
+.insights-container>div {
+    background-color: var(--primary-white-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1rem;
+    padding: 2rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.budget-details p {
+    color: var(--secondary-black-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.budget-details span {
+    color: var(--secondary-black-color);
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.expenses-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.expenses-container>p {
+    color: var(--secondary-black-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.expenses-container>div {
+    display: flex;
+    column-gap: 1rem;
+}
+
+.expense-container {
+    background-color: var(--primary-white-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.expense-container>h5 {
+    color: var(--secondary-black-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.expense-container>span {
+    color: var(--secondary-black-color);
+    font-size: 0.7rem;
+    font-weight: 100;
+}
+
+.expense-container>p {
+    color: var(--secondary-black-color);
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.expense-container .spent-amount {
+    background-color: #FAFAFA;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    margin-top: 0.8rem;
+}
+
+.spent-amount p {
+    color: var(--secondary-black-color);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.spent-amount span {
+    margin: 0;
+    color: var(--secondary-black-color);
+    font-size: 0.8rem;
+    font-weight: 100;
+}
+
+.expense-container .cat-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+}
+
+.expense-container .cat-details div {
+    background-color: #ff836a;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-white-color);
+    font-weight: 400
+}
+
+.expense-container .cat-details img {
+    cursor: pointer;
+}
