@@ -20,7 +20,9 @@ dashboardRoutes.get("/dashboard", userAuth, async (req, res) => {
 
     const recentExpenses = await Expense.find({ userId })
       .sort({ createdAt: -1 })
-      .limit(4);
+      .limit(4)
+      .populate("categoryId", "name");
+    // .populate("userId", "firstName lastName");
 
     const totalBudgetAmount = totalBudget[0]?.total || 0;
     const totalExpenseAmount = totalExpense[0]?.total || 0;

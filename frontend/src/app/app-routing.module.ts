@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { authGuard } from './auth/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ExpensesComponent } from './expenses/expenses.component';
-import { BudgetComponent } from './budget/budget.component';
-import { SettingsComponent } from './settings/settings.component';
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { BudgetComponent } from './pages/budgets/budget.component';
+import { SettingsComponent } from './pages/setting/settings.component';
+import { ExpenseComponent } from './pages/expense/expense.component';
+import { SignupComponent } from './pages/signup/signup.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   {
     path: '',
     component: LayoutComponent,
@@ -22,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'expenses',
-        component: ExpensesComponent,
+        component: ExpenseComponent,
       },
       {
         path: 'budget',
@@ -35,7 +38,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: '*',
+    path: '**',
     redirectTo: '/login',
     pathMatch: 'full',
   },
@@ -45,4 +48,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

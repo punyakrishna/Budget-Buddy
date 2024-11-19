@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (
   state: RouterStateSnapshot
 ) => {
   const router: Router = inject(Router);
-  const authToken = localStorage.getItem('auth-token');
+  const authToken = localStorage.getItem('authToken');
   if (authToken !== null) {
     return true;
   } else {

@@ -3,16 +3,33 @@ const User = require("../models/user");
 
 const userAuth = async (req, res, next) => {
   try {
-    const cookies = req.cookies;
+    // const cookies = req.cookies;
 
-    if (!cookies || !cookies.token) {
+    // if (!cookies || !cookies.token) {
+    //   return res.status(401).json({
+    //     code: 401,
+    //     message: "Authentication token is missing.",
+    //   });
+    // }
+
+    const authHeader = req.headers["authorization"];
+    if (!authHeader) {
+      return res.status(401).json({
+        code: 401,
+        message: "Authorization token is missing.",
+      });
+    }
+    const token = authHeader.split(" ")[1];
+
+    if (!token) {
       return res.status(401).json({
         code: 401,
         message: "Authentication token is missing.",
       });
     }
 
-    const { _id } = jwt.verify(cookies.token, "Thisissecret");
+    // Verify the token
+    const { _id } = jwt.verify(token, "Thisissecret");
 
     const user = await User.findById(_id);
 

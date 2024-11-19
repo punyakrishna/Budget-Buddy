@@ -64,11 +64,12 @@ userRouter.post("/login", loginValidation, async (req, res) => {
       });
     }
 
-    const token = user.getJWT();
-    res.cookie("token", token);
+    const authToken = user.getJWT();
+    // res.cookie("token", token);
     return res.status(200).json({
       code: 200,
       message: "Login successful!",
+      authToken,
     });
   } catch (err) {
     console.log("Login error: ", err);
