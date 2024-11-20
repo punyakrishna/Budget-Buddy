@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 export class LayoutComponent {
   public dialogRef: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
+  data: any = localStorage.getItem('userInfo');
+  userDetails = JSON.parse(this.data);
 
   navigationList = [
     {
@@ -35,11 +37,6 @@ export class LayoutComponent {
   ];
 
   handleLogoutUser() {
-    // this.dialogRef = this.matDialog.open(LogoutDialogBodyComponent, {
-    //   width: '350px',
-    //   height: '250px',
-    //   panelClass: 'custom-dialog-container',
-    // });
     // this.dialogRef.afterClosed().subscribe((result: boolean) => {
     //   if (result === true) {
     //     localStorage.removeItem('authToken');

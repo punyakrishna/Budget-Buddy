@@ -10,7 +10,11 @@ import { LoginService } from '../../services/login/login.service';
 })
 export class LoginComponent {
   public loginForm: any;
-  constructor(private router: Router, private fb: FormBuilder, private loginService: LoginService) { }
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
     const authToken = localStorage.getItem('authToken');
@@ -18,45 +22,39 @@ export class LoginComponent {
       this.router.navigate(['/dashboard']);
     }
     this.loginForm = this.fb.group({
-      email: ['', [
-        Validators.required,
-        Validators.email
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
-      ]],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ),
+        ],
+      ],
     });
   }
 
   onSubmitForm() {
     const data = {
-      email: this.loginForm.get("email")?.value, password: this.loginForm.get("password")?.value
-    }
+      email: this.loginForm.get('email')?.value,
+      password: this.loginForm.get('password')?.value,
+    };
     this.loginService.login(data).subscribe({
       next: (response: any) => {
         console.log('Response:', response);
-        localStorage.setItem(
-          'authToken',
-          response?.authToken
-        );
+        localStorage.setItem('authToken', response?.authToken);
+        localStorage.setItem('usrerInfo', JSON.stringify(response?.data));
       },
       error: (error) => {
         console.error('Error:', error);
-        alert(error.error.message)
+        alert(error.error.message);
       },
       complete: () => {
-        console.log('Data fetch completed.');
         this.router.navigate(['/dashboard']);
-
       },
     });
-
-    // localStorage.setItem(
-    //   'authToken',
-    //   'lkjhgfdsdfghjkl8765423456789kjhcxzxdfty8iytrewq2``1234567890oijhbv'
-    // );
   }
 
   redirectToSignup() {

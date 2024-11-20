@@ -4,12 +4,12 @@ import { DashboardService } from '../../services/dashboard/dashboard.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
   dashboardData: any = {};
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
     this.fetchDashboardData();
@@ -29,5 +29,4 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
-
 }

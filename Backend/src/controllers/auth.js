@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const user = require("../models/user");
 
 const signup = async (req, res) => {
   try {
@@ -61,6 +62,10 @@ const login = async (req, res) => {
       code: 200,
       message: "Login successful!",
       authToken,
+      data: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
     });
   } catch (err) {
     console.log("Login error: ", err);
