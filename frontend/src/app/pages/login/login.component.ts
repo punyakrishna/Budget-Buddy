@@ -44,6 +44,7 @@ export class LoginComponent {
       },
       error: (error) => {
         console.error('Error:', error);
+        alert(error.error.message)
       },
       complete: () => {
         console.log('Data fetch completed.');
@@ -56,5 +57,9 @@ export class LoginComponent {
     //   'authToken',
     //   'lkjhgfdsdfghjkl8765423456789kjhcxzxdfty8iytrewq2``1234567890oijhbv'
     // );
+  }
+
+  redirectToSignup() {
+    this.router.navigate(['/signup']);
   }
 }

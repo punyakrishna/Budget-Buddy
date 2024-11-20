@@ -18,6 +18,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { AddBudgetComponent } from './pages/budgets/add-budget/add-budget.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddExpenseComponent } from './pages/expense/add-expense/add-expense.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AddExpenseComponent } from './pages/expense/add-expense/add-expense.com
     SignupComponent,
     AddBudgetComponent,
     AddExpenseComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,22 +1,21 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
+import constants from '../../core/constants';
+import { LoaderService } from '../loader.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
-  private baseUrl = 'http://localhost:3434';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private loadingService: LoaderService) { }
 
   getData(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/dashboard`);
-    // .pipe(
-    //   catchError((error) => {
-    //     console.error('API Error:', error);
-    //     return throwError(() => error); // Better error handling
-    //   })
-    // );
+    this.loadingService.showLoading();
+    return this.http.get(`${constants.baseURL}/dashboard`).pipe(
+      finalize(() => this.loadingService.hideLoading())
+    );;
+
   }
 }

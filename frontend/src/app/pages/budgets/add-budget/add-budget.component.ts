@@ -25,13 +25,14 @@ export class AddBudgetComponent {
     if (this.data) {
       this.budgetForm = this.fb.group({
         categoryId: [this.data.categoryId._id || '', [Validators.required]],
-        amount: [this.data.amount || '', [Validators.required]],
+        amount: [this.data.amount || '', [Validators.required, Validators.pattern(/^\d*\.?\d+$/),
+        Validators.min(0.01),]],
       });
     } else {
-      // For 'Add' case, initialize form with empty fields
       this.budgetForm = this.fb.group({
         categoryId: ['', [Validators.required]],
-        amount: ['', [Validators.required]],
+        amount: ['', [Validators.required, Validators.pattern(/^\d*\.?\d+$/),
+        Validators.min(0.01),]],
       });
     }
   }
@@ -39,17 +40,15 @@ export class AddBudgetComponent {
   getAllCategories() {
     this.budgetService.getCategories().subscribe({
       next: (response: any) => {
-        console.log('Response:', response.data);
         this.categories = response.data;
       },
       error: (error) => {
-        console.error('Error:', error);
+        alert("error.message")
       },
     });
   }
 
   getButtonText() {
-    console.log("this.data", this.data);
     if (this.data && this.data._id) {
       return "Update Budget";
     }
@@ -65,11 +64,10 @@ export class AddBudgetComponent {
     if (this.data) {
       this.budgetService.updateBudget(data, this.data._id).subscribe({
         next: (response: any) => {
-          console.log('Response:', response);
+          alert("Budget updated succesfully")
         },
         error: (error) => {
-          console.error('Error:', error);
-          alert("something went wrong")
+          alert(error.error.message)
         },
         complete: () => {
           this.dailogRef.close(true)
@@ -78,11 +76,10 @@ export class AddBudgetComponent {
     } else {
       this.budgetService.addBudget(data).subscribe({
         next: (response: any) => {
-          console.log('Response:', response);
+          alert("Expense added succesfully")
         },
         error: (error) => {
-          console.error('Error:', error);
-          alert("something went wrong")
+          alert(error.error.message)
         },
         complete: () => {
           this.dailogRef.close(true)

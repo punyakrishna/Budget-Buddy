@@ -6,7 +6,7 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
+  row-gap: 2rem;
   box-sizing: border-box;
   padding: 20px;
 }
@@ -28,14 +28,13 @@
 }
 
 .input-and-error {
-  width: 100%;
-  /* width: calc(100  % - 110px); */
+  width: calc(100% - 70px);
+  position: relative;
 }
 
 .input-field {
   width: 100%;
   height: 40px;
-  /* border-radius: 8px; */
   padding: 0px 5px;
   box-sizing: border-box;
 }
@@ -52,7 +51,6 @@
   color: var(--primary-white-color);
   padding: 10px 20px;
   font-weight: bold;
-  /* border-radius: 12px; */
   cursor: pointer;
   border: none;
 }
@@ -68,14 +66,31 @@
 .select-field {
   width: 100%;
   height: 40px;
-  font-size: 16px;
 }
 
 .select-field option {
-  font-size: 14px;
+  font-size: 13px;
+}
+
+.error-message-container {
+  position: absolute;
+  bottom: -20px;
+  width: 100%;
+  max-width: 100%;
+  height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .error-message {
-  color: red;
-  font-size: 14px;
+  color: var(--primary-error-color);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.is-invalid {
+  border: 1.5px solid var(--primary-error-color) !important;
 }

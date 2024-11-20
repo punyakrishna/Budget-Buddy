@@ -135,13 +135,19 @@
       </div>
     </div>
 
-    <button
-      class="login-button"
-      [class.is-disable]="signupForm.invalid"
-      type="submit"
-      [disabled]="signupForm.invalid"
-    >
-      Signup
-    </button>
+    <div class="button-container">
+      <button
+        class="login-button"
+        [class.is-disable]="signupForm.invalid"
+        type="submit"
+        [disabled]="signupForm.invalid"
+      >
+        Signup
+      </button>
+
+      <p class="login-text">
+        Already have an account? <span (click)="redirectToLogin()">Login</span>
+      </p>
+    </div>
   </form>
 </div>

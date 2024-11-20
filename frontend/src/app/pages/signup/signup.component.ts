@@ -10,7 +10,6 @@ import { LoginService } from '../../services/login/login.service';
 })
 export class SignupComponent {
   public signupForm!: FormGroup;
-  public genders = ['Female', 'Male', 'Others']; // Gender dropdown options
 
   constructor(
     private fb: FormBuilder,
@@ -24,23 +23,23 @@ export class SignupComponent {
         '',
         [
           Validators.required,
-          Validators.minLength(1),
+          Validators.minLength(3),
         ],
       ],
       lastName: [
-        '', // Optional field
+        '',
       ],
       email: [
         '',
         [
           Validators.required,
-          Validators.email, // Validate email format
+          Validators.email,
         ],
       ],
-      gender: [
-        '', // Optional
-        [Validators.pattern(/^(Female|Male|Others)?$/)], // Valid options
-      ],
+      // gender: [
+      //   '', 
+      //   [Validators.pattern(/^(Female|Male|Others)?$/)], 
+      // ],
       password: [
         '',
         [
@@ -56,20 +55,22 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       console.log('Signup Data:', this.signupForm.value);
 
-      // Submit form to the backend
-      // this.loginService.signup(this.signupForm.value).subscribe({
-      //   next: (response: any) => {
-      //     console.log('Signup successful:', response);
-      //     alert('Signup successful!');
-      //     this.router.navigate(['/login']); // Redirect to login after signup
-      //   },
-      //   error: (error) => {
-      //     console.error('Signup error:', error);
-      //     alert('Signup failed. Please try again.');
-      //   },
-      // });
+      this.loginService.signup(this.signupForm.value).subscribe({
+        next: () => {
+          alert('Signup successful!');
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Signup error:', error);
+          alert('Signup failed. Please try again.');
+        },
+      });
     } else {
       alert('Please correct the form errors before submitting.');
     }
+  }
+
+  redirectToLogin() {
+    this.router.navigate(['/login']);
   }
 }

@@ -10,7 +10,7 @@
 
 .sub-container {
     width: 400px;
-    height: 450px;
+    height: 500px;
     background-color: var(--primary-light-blue-color);
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -83,6 +83,13 @@
     text-overflow: ellipsis;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+}
+
 .login-button {
     width: 180px;
     padding: 15px;
@@ -100,4 +107,16 @@
     color: var(--primary-black-color);
     border: none;
     font-weight: 200;
+}
+
+.login-text {
+    font-size: 14px;
+    color: var(--primary-black-color);
+}
+
+.login-text span {
+    font-size: 14px;
+    color: var(--primary-blue-color);
+    font-weight: 500;
+    cursor: pointer;
 }

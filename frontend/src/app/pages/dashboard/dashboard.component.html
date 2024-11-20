@@ -35,7 +35,7 @@
     <p>Recent Expenses</p>
     <div>
       <div
-        *ngFor="let expense of this.dashboardData.recentExpenses"
+        *ngFor="let expense of this.dashboardData.recentExpenses; index as i"
         class="expense-container"
       >
         <h5>{{ expense.title }}</h5>
@@ -45,7 +45,7 @@
           <span>Amount</span>
           <p>{{ expense.amount }}</p>
         </div>
-        <div class="cat-details">
+        <div [ngClass]="'cat-details-' + i">
           <div>{{ expense.categoryId.name }}</div>
           <img src="assets/image/ic_menu.svg" />
         </div>

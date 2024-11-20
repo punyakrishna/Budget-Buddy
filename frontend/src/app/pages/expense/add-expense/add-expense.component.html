@@ -14,13 +14,18 @@
             formControlName="categoryId"
             class="select-field"
             required
+            [class.is-invalid]="
+              expenseForm.get('categoryId').touched &&
+              expenseForm.get('categoryId').invalid
+            "
           >
-            <option>Select category</option>
+            <option value="">Select category</option>
             <option *ngFor="let option of categories" [value]="option._id">
               {{ option.name }}
             </option>
           </select>
           <div
+            class="error-message-container"
             *ngIf="
               expenseForm.get('categoryId').touched &&
               expenseForm.get('categoryId').invalid
@@ -44,8 +49,13 @@
             formControlName="title"
             type="text"
             placeholder="Enter Expense"
+            [class.is-invalid]="
+              expenseForm.get('title').touched &&
+              expenseForm.get('title').invalid
+            "
           />
           <div
+            class="error-message-container"
             *ngIf="
               expenseForm.get('title').touched &&
               expenseForm.get('title').invalid
@@ -54,7 +64,7 @@
             <span
               class="error-message"
               *ngIf="expenseForm.get('title').errors?.required"
-              >Expense is required</span
+              >Title is required</span
             >
           </div>
         </div>
@@ -63,15 +73,20 @@
       <div class="form-gp">
         <label>Description* :</label>
         <div class="input-and-error">
-          <input
+          <textarea
             class="input-field"
             label="expense"
             formControlName="description"
             type="text"
-            inputmode="”numeric”"
             placeholder="Enter Expense"
-          />
+            rows="5"
+            [class.is-invalid]="
+              expenseForm.get('description').touched &&
+              expenseForm.get('description').invalid
+            "
+          ></textarea>
           <div
+            class="error-message-container"
             *ngIf="
               expenseForm.get('description').touched &&
               expenseForm.get('description').invalid
@@ -80,8 +95,11 @@
             <span
               class="error-message"
               *ngIf="expenseForm.get('description').errors?.required"
-              >Expense is required</span
+              >Description is required</span
             >
+            <span *ngIf="expenseForm.get('description').hasError('minlength')">
+              Description should have at least 5 characters.
+            </span>
           </div>
         </div>
       </div>
@@ -94,10 +112,14 @@
             label="expense"
             formControlName="amount"
             type="text"
-            inputmode="”numeric”"
             placeholder="Enter Expense"
+            [class.is-invalid]="
+              expenseForm.get('amount').touched &&
+              expenseForm.get('amount').invalid
+            "
           />
           <div
+            class="error-message-container"
             *ngIf="
               expenseForm.get('amount').touched &&
               expenseForm.get('amount').invalid
@@ -108,6 +130,18 @@
               *ngIf="expenseForm.get('amount').errors?.required"
               >Expense is required</span
             >
+            <span
+              class="error-message"
+              *ngIf="expenseForm.get('amount').hasError('pattern')"
+            >
+              Budget amount must be a valid number.
+            </span>
+            <span
+              class="error-message"
+              *ngIf="expenseForm.get('amount').hasError('min')"
+            >
+              Budget amount must be a positive number.
+            </span>
           </div>
         </div>
       </div>

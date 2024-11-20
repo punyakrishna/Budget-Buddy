@@ -15,12 +15,13 @@
             class="select-field"
             required
           >
-            <option>Select category</option>
+            <option value="">Select category</option>
             <option *ngFor="let option of categories" [value]="option._id">
               {{ option.name }}
             </option>
           </select>
           <div
+            class="error-message-container"
             *ngIf="
               budgetForm.get('categoryId').touched &&
               budgetForm.get('categoryId').invalid
@@ -47,6 +48,7 @@
             placeholder="Enter Expense"
           />
           <div
+            class="error-message-container"
             *ngIf="
               budgetForm.get('amount').touched &&
               budgetForm.get('amount').invalid
@@ -57,6 +59,18 @@
               *ngIf="budgetForm.get('amount').errors?.required"
               >Expense is required</span
             >
+            <span
+              class="error-message"
+              *ngIf="budgetForm.get('amount').hasError('pattern')"
+            >
+              Budget amount must be a valid number.
+            </span>
+            <span
+              class="error-message"
+              *ngIf="budgetForm.get('amount').hasError('min')"
+            >
+              Budget amount must be a positive number.
+            </span>
           </div>
         </div>
       </div>

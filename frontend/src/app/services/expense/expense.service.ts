@@ -1,32 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
+import constants from '../../core/constants';
+import { LoaderService } from '../loader.service';
+import { IExpenseRequest } from '../../core/interfaces/expenseInterface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExpenseService {
-  private baseUrl = 'http://localhost:3434';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loadingService: LoaderService) { }
 
   getExpenses(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/expenses`);
+    this.loadingService.showLoading();
+
+    return this.http.get(`${constants.baseURL}/expenses`).pipe(
+      finalize(() => this.loadingService.hideLoading())
+    );;
   }
 
   getCategories(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/categories`);
+    return this.http.get(`${constants.baseURL}/categories`);
   }
 
-  addExpense(reqBody: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/expense`, reqBody);
+  addExpense(reqBody: IExpenseRequest): Observable<any> {
+    return this.http.post(`${constants.baseURL}/expense`, reqBody);
   }
 
-  updateExpense(reqBody: any, expenseId: string): Observable<any> {
-    return this.http.put(`${this.baseUrl}/expense/${expenseId}`, reqBody);
+  updateExpense(reqBody: IExpenseRequest, expenseId: string): Observable<any> {
+    return this.http.put(`${constants.baseURL}/expense/${expenseId}`, reqBody);
   }
 
   deleteExpense(expenseId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/expense/${expenseId}`);
+    return this.http.delete(`${constants.baseURL}/expense/${expenseId}`);
   }
 }

@@ -24,16 +24,20 @@ export class AddExpenseComponent {
     if (this.data) {
       this.expenseForm = this.fb.group({
         categoryId: [this.data.categoryId._id || '', [Validators.required]],
-        amount: [this.data.amount || '', [Validators.required]],
+        amount: [this.data.amount || '', [Validators.required, Validators.pattern(/^\d*\.?\d+$/),
+        Validators.min(0.01),]],
         title: [this.data.title || '', [Validators.required]],
-        description: [this.data.description || '', [Validators.required]],
+        description: [this.data.description || '', [Validators.required, Validators.minLength(5)]],
       });
     } else {
       this.expenseForm = this.fb.group({
         categoryId: ['', [Validators.required]],
-        amount: ['', [Validators.required]],
+        amount: ['', [Validators.required,
+        Validators.pattern(/^\d*\.?\d+$/),
+        Validators.min(0.01),
+        ]],
         title: ['', [Validators.required]],
-        description: ['', [Validators.required]],
+        description: ['', [Validators.required, Validators.minLength(5)]],
       });
     }
   }
@@ -68,11 +72,11 @@ export class AddExpenseComponent {
     if (this.data) {
       this.expenseService.updateExpense(data, this.data._id).subscribe({
         next: (response: any) => {
-          console.log('Response:', response);
+          alert("Expense updated succesfully")
         },
         error: (error) => {
           console.error('Error:', error);
-          alert("something went wrong")
+          alert(error.message)
         },
         complete: () => {
           this.dailogRef.close(true)
@@ -81,7 +85,8 @@ export class AddExpenseComponent {
     } else {
       this.expenseService.addExpense(data).subscribe({
         next: (response: any) => {
-          console.log('Response:', response);
+          alert("Expense added succesfully")
+
         },
         error: (error) => {
           console.error('Error:', error);

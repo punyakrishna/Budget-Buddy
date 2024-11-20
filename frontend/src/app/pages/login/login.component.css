@@ -85,6 +85,13 @@
     text-overflow: ellipsis;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.5rem;
+}
+
 .login-button {
     width: 100px;
     padding: 10px 15px;
@@ -102,9 +109,14 @@
     border: none;
 }
 
-/* .error-message.password-error {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-} */
+.signup-text {
+    font-size: 14px;
+    color: var(--primary-black-color);
+}
+
+.signup-text span {
+    font-size: 14px;
+    color: var(--primary-blue-color);
+    font-weight: 500;
+    cursor: pointer;
+}

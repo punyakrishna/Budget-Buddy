@@ -94,7 +94,7 @@ button {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 300px));
     gap: 3rem;
-    height: calc(100% - 5rem);
+    height: 100%;
     overflow-y: auto;
   }
 }

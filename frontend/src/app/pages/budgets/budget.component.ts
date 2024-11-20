@@ -78,6 +78,7 @@ export class BudgetComponent implements OnInit {
 
   getBudgetCardClassName(budget: any): string {
     const percentage = this.getSpentPercentage(budget);
+    console.log("percentage", percentage, budget)
     if (percentage > 0 && percentage <= 60) {
       return 'green';
     } else if (percentage > 60 && percentage < 100) {
@@ -89,12 +90,13 @@ export class BudgetComponent implements OnInit {
 
   getBudgetCardDescription(budget: any): string {
     const percentage = this.getSpentPercentage(budget);
-    if (percentage <= 60) {
+    if (percentage > 0 && percentage <= 60) {
       return `Your expenditure on ${budget.categoryId.name} is on track`;
     } else if (percentage > 60 && percentage < 100) {
       return 'You might be spending too much';
     } else {
       return `You have not spent on ${budget.categoryId.name} yet`;
     }
+
   }
 }

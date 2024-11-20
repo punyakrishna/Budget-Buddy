@@ -78,6 +78,7 @@
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     width: 250px;
+    flex-wrap: wrap;
 }
 
 .expense-container>h5 {
@@ -121,25 +122,46 @@
     font-weight: 100;
 }
 
-.expense-container .cat-details {
+.expense-container .cat-details-0,
+.expense-container .cat-details-1,
+.expense-container .cat-details-2,
+.expense-container .cat-details-3 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 0.8rem;
 }
 
-.expense-container .cat-details div {
-    background-color: #ff836a;
-    width: 100px;
-    height: 40px;
+.expense-container .cat-details-0 div,
+.expense-container .cat-details-1 div,
+.expense-container .cat-details-2 div,
+.expense-container .cat-details-3 div {
     border-radius: 20px 20px 20px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--primary-white-color);
-    font-weight: 400
+    font-weight: 400;
+    padding: 0px 10px;
+    font-size: 14px;
 }
 
-.expense-container .cat-details img {
+.expense-container .cat-details-0 div {
+    background-color: #ff836a;
+}
+
+.expense-container .cat-details-1 div {
+    background-color: #97bd70;
+}
+
+.expense-container .cat-details-2 div {
+    background-color: #8191d1;
+}
+
+.expense-container .cat-details-3 div {
+    background-color: #d15a9b;
+}
+
+.expense-container img {
     cursor: pointer;
 }

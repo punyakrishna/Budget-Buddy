@@ -64,13 +64,20 @@
         </span>
       </div>
     </div>
-    <button
-      [disabled]="!loginForm.valid"
-      [class.is-disable]="!loginForm.valid"
-      class="login-button"
-      type="submit"
-    >
-      Login
-    </button>
+
+    <div class="button-container">
+      <button
+        [disabled]="!loginForm.valid"
+        [class.is-disable]="!loginForm.valid"
+        class="login-button"
+        type="submit"
+      >
+        Login
+      </button>
+
+      <p class="signup-text">
+        Don't have an account? <span (click)="redirectToSignup()">Signup</span>
+      </p>
+    </div>
   </form>
 </div>
